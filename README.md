@@ -4,11 +4,58 @@ Personal homelab setup connecting a Proxmox VE hypervisor, Home Assistant, and a
 
 ---
 
+## Architecture
+
+```mermaid
+flowchart TD
+    subgraph TailscaleNet["Tailscale Mesh Network"]
+        Remote["Remote Clients / Workstations"]
+    end
+
+    subgraph Proxmox["Proxmox VE Hypervisor ('pve') - Subnet Router"]
+        subgraph HAVM["Home Assistant VM ('haos')"]
+            HA["Home Assistant"]
+        end
+
+        subgraph DebianVM["Debian VM ('dockhand')"]
+            TSServe["Tailscale Serve (:443)"]
+            Caddy["Caddy (:8081)"]
+            Dockhand["Dockhand UI (:3000)"]
+
+            subgraph DockerEnv["Docker Fleet"]
+                VSCode["VS Code Server"]
+                Jupyter["JupyterLab & SciPy"]
+                Marimo["Marimo"]
+                FB["Filebrowser Quantum"]
+            end
+        end
+    end
+
+    subgraph IoT["Smart Home Ecosystem"]
+        Tapo["TP-Link Tapo Devices"]
+        ESP32["ESP32-C6 (OpenThread Border Router)"]
+        Lafaer["GL.iNet Lafaer Presence Sensor (Thread)"]
+    end
+
+    Remote -->|Encrypted Tailnet| Proxmox
+    Remote -->|"https://dockhand.<tailnet>.ts.net"| TSServe
+    TSServe --> Caddy
+    Caddy --> Dockhand
+    Caddy --> DockerEnv
+
+    HA -->|Local / Cloud Integration| Tapo
+    HA -->|OTBR Integration| ESP32
+    ESP32 -->|Thread Protocol| Lafaer
+```
+
+---
+
 ## 1. Tailscale Mesh & Subnet Routing
 
 ![Tailscale Machines](assets/tailscale.png)
 
 - **Subnet Routing**: The Proxmox VE hypervisor (`pve`) advertises local LAN/VM subnets, granting any device on the tailnet direct access to internal VM bridges, hypervisor consoles, and Home Assistant (`haos`) without port forwarding.
+- **Home Assistant (`haos`)**: Controls smart home hardware including TP-Link Tapo devices and a DIY ESP32-C6 flashed as an OpenThread Border Router (OTBR) connecting to a GL.iNet Lafaer presence sensor over Thread.
 - **Dedicated Docker VM**: The `dockhand` node runs on Proxmox to host containerized dev and data science environments.
 
 ---
