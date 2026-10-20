@@ -1,0 +1,309 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 1120" width="100%" height="100%" style="background-color:#0b0f19; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="pveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ea580c"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+
+    <linearGradient id="tailnetGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+
+    <linearGradient id="vmGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <linearGradient id="caddyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+
+    <linearGradient id="dockhandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#3730a3"/>
+    </linearGradient>
+
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#172033"/>
+    </linearGradient>
+
+    <linearGradient id="storageGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#115e59"/>
+    </linearGradient>
+
+    <!-- Filter for subtle dropshadow -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+
+    <!-- Markers for arrows -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f97316"/>
+    </marker>
+    <marker id="arrow-teal" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2dd4bf"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#c084fc"/>
+    </marker>
+  </defs>
+
+  <!-- Outer Canvas Card -->
+  <rect x="10" y="10" width="840" height="1100" rx="16" fill="#0b1120" stroke="#1e293b" stroke-width="1.5"/>
+
+  <!-- ========================================== -->
+  <!-- 1. TAILSCALE INGRESS & PROXMOX VE (CENTER TOP) -->
+  <!-- ========================================== -->
+
+  <!-- Tailscale Ingress Badge -->
+  <g transform="translate(190, 30)">
+    <rect width="480" height="42" rx="8" fill="url(#tailnetGrad)" stroke="#3b82f6" stroke-width="1.2" filter="url(#shadow)"/>
+    <circle cx="24" cy="21" r="6" fill="#4ade80"/>
+    <text x="40" y="26" font-size="13" font-weight="600" fill="#ffffff" letter-spacing="0.3">TAILSCALE MESH INGRESS</text>
+    <text x="235" y="26" font-size="13" font-weight="400" fill="#93c5fd">https://dockhand.&lt;tailnet&gt;.ts.net</text>
+  </g>
+
+  <!-- Arrow: Tailscale to Proxmox -->
+  <line x1="430" y1="72" x2="430" y2="92" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Proxmox VE Hypervisor (Center Top) -->
+  <g transform="translate(180, 95)" filter="url(#shadow)">
+    <rect width="500" height="80" rx="12" fill="url(#pveGrad)" stroke="#fb923c" stroke-width="1.5"/>
+    <rect x="2" y="2" width="496" height="76" rx="10" fill="#0f172a" fill-opacity="0.88"/>
+    
+    <!-- Proxmox Icon / Accent -->
+    <rect x="18" y="16" width="48" height="48" rx="8" fill="#ea580c"/>
+    <text x="42" y="46" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">PVE</text>
+    
+    <text x="80" y="38" font-size="16" font-weight="700" fill="#ffffff">Proxmox VE Hypervisor</text>
+    <rect x="268" y="23" width="56" height="20" rx="4" fill="#ea580c" fill-opacity="0.3"/>
+    <text x="296" y="37" font-size="11" font-weight="700" fill="#fdba74" text-anchor="middle">HOST</text>
+    <text x="80" y="58" font-size="12" font-weight="500" fill="#94a3b8">Node: <tspan fill="#f8fafc" font-weight="600">pve</tspan> (100.78.109.113) • Subnet Router (--advertise-routes)</text>
+  </g>
+
+  <!-- Major Downward Branch to Debian VM (Thick Flow) -->
+  <path d="M 430 175 L 430 215" stroke="#f97316" stroke-width="2.5" fill="none" marker-end="url(#arrow-orange)"/>
+
+  <!-- ========================================== -->
+  <!-- 2. PRIMARY FOCUS: DEBIAN VM & DOCKHAND (MIDDLE) -->
+  <!-- ========================================== -->
+  <g transform="translate(40, 220)" filter="url(#shadow)">
+    <!-- Debian VM Container Box -->
+    <rect width="780" height="660" rx="14" fill="url(#vmGrad)" stroke="#0284c7" stroke-width="1.8"/>
+
+    <!-- VM Header -->
+    <rect x="0" y="0" width="780" height="46" rx="14" fill="#0284c7" fill-opacity="0.12"/>
+    <circle cx="26" cy="23" r="6" fill="#38bdf8"/>
+    <text x="42" y="28" font-size="15" font-weight="700" fill="#f0f9ff">Debian 13 VM</text>
+    <text x="145" y="28" font-size="13" font-weight="500" fill="#bae6fd">("dockhand" • 100.113.128.113)</text>
+    <rect x="580" y="12" width="180" height="22" rx="4" fill="#0369a1" fill-opacity="0.3"/>
+    <text x="670" y="27" font-size="11" font-weight="600" fill="#7dd3fc" text-anchor="middle">4 vCPU • 13.7 GB RAM • Docker 29.9</text>
+
+    <!-- Ingress Pipeline Inside VM: Tailscale Serve -> Caddy -->
+    <g transform="translate(30, 60)">
+      <!-- Step 1: Tailscale Serve -->
+      <g transform="translate(0, 0)">
+        <rect width="330" height="64" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1.2"/>
+        <text x="16" y="24" font-size="13" font-weight="700" fill="#60a5fa">Tailscale Serve</text>
+        <rect x="125" y="11" width="75" height="18" rx="4" fill="#1d4ed8" fill-opacity="0.4"/>
+        <text x="162" y="24" font-size="10" font-weight="700" fill="#93c5fd" text-anchor="middle">HTTPS :443</text>
+        <text x="16" y="44" font-size="11" font-weight="400" fill="#94a3b8">tailscale serve --https=443 127.0.0.1:8081</text>
+      </g>
+
+      <!-- Arrow from Serve to Caddy -->
+      <line x1="335" y1="32" x2="375" y2="32" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Step 2: Caddy Reverse Proxy -->
+      <g transform="translate(390, 0)">
+        <rect width="330" height="64" rx="8" fill="url(#caddyGrad)" stroke="#38bdf8" stroke-width="1.2"/>
+        <rect x="2" y="2" width="326" height="60" rx="6" fill="#0f172a" fill-opacity="0.9"/>
+        <text x="16" y="24" font-size="13" font-weight="700" fill="#38bdf8">Caddy Reverse Proxy</text>
+        <rect x="170" y="11" width="60" height="18" rx="4" fill="#0284c7" fill-opacity="0.4"/>
+        <text x="200" y="24" font-size="10" font-weight="700" fill="#7dd3fc" text-anchor="middle">Port 8081</text>
+        <text x="16" y="44" font-size="11" font-weight="400" fill="#94a3b8">caddy/Caddyfile • Subpath mapping &amp; redirects</text>
+      </g>
+    </g>
+
+    <!-- Branching Lines from Caddy to Containers -->
+    <path d="M 585 125 L 585 145" stroke="#38bdf8" stroke-width="1.5" fill="none"/>
+    <path d="M 200 145 L 680 145" stroke="#38bdf8" stroke-width="1.5" fill="none"/>
+    
+    <!-- Vertical Drops to Containers -->
+    <line x1="200" y1="145" x2="200" y2="165" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <line x1="420" y1="145" x2="420" y2="165" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <line x1="680" y1="145" x2="680" y2="165" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+    <!-- Container 1: Dockhand GUI (Primary Management) -->
+    <g transform="translate(30, 170)">
+      <rect width="720" height="74" rx="10" fill="url(#dockhandGrad)" stroke="#818cf8" stroke-width="1.4"/>
+      <rect x="2" y="2" width="716" height="70" rx="8" fill="#0f172a" fill-opacity="0.92"/>
+      <rect x="18" y="15" width="44" height="44" rx="8" fill="#4f46e5"/>
+      <text x="40" y="43" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">DH</text>
+      <text x="75" y="34" font-size="15" font-weight="700" fill="#ffffff">Dockhand Container Management UI</text>
+      <rect x="350" y="20" width="75" height="20" rx="4" fill="#4338ca" fill-opacity="0.4"/>
+      <text x="387" y="34" font-size="11" font-weight="700" fill="#c7d2fe" text-anchor="middle">Port 3000</text>
+      <rect x="435" y="20" width="105" height="20" rx="4" fill="#1e293b"/>
+      <text x="487" y="34" font-size="11" font-weight="600" fill="#38bdf8" text-anchor="middle">Route: / (fallback)</text>
+      <text x="75" y="54" font-size="12" font-weight="400" fill="#94a3b8">fnsys/dockhand • Lifecycle orchestration, logs, container terminal shells, and memory/CPU metrics</text>
+    </g>
+
+    <!-- Dev & Storage Containers Grid -->
+    <!-- Row 1: VS Code Server + Filebrowser Quantum -->
+    <g transform="translate(30, 260)">
+      <!-- VS Code Server -->
+      <g transform="translate(0, 0)">
+        <rect width="345" height="110" rx="10" fill="url(#cardGrad)" stroke="#3b82f6" stroke-width="1.2"/>
+        <rect x="14" y="14" width="32" height="32" rx="6" fill="#1e3a8a"/>
+        <text x="30" y="36" font-size="14" font-weight="800" fill="#60a5fa" text-anchor="middle">&lt;/&gt;</text>
+        <text x="56" y="28" font-size="14" font-weight="700" fill="#f8fafc">VS Code Server</text>
+        <rect x="175" y="16" width="65" height="18" rx="4" fill="#1d4ed8" fill-opacity="0.3"/>
+        <text x="207" y="29" font-size="10" font-weight="700" fill="#93c5fd" text-anchor="middle">:8080</text>
+        <rect x="245" y="16" width="85" height="18" rx="4" fill="#0f172a"/>
+        <text x="287" y="29" font-size="10" font-weight="600" fill="#38bdf8" text-anchor="middle">Route: /code/*</text>
+        <text x="14" y="62" font-size="11" font-weight="500" fill="#cbd5e1">Image: codercom/code-server</text>
+        <text x="14" y="80" font-size="11" font-weight="400" fill="#94a3b8">Browser IDE for full remote code editing</text>
+        <text x="14" y="98" font-size="10" font-weight="400" fill="#64748b">Caddy strips /code prefix via handle_path</text>
+      </g>
+
+      <!-- Filebrowser Quantum -->
+      <g transform="translate(375, 0)">
+        <rect width="345" height="110" rx="10" fill="url(#cardGrad)" stroke="#0d9488" stroke-width="1.2"/>
+        <rect x="14" y="14" width="32" height="32" rx="6" fill="#115e59"/>
+        <text x="30" y="36" font-size="14" font-weight="800" fill="#2dd4bf" text-anchor="middle">FB</text>
+        <text x="56" y="28" font-size="14" font-weight="700" fill="#f8fafc">Filebrowser Quantum</text>
+        <rect x="210" y="16" width="55" height="18" rx="4" fill="#0f766e" fill-opacity="0.4"/>
+        <text x="237" y="29" font-size="10" font-weight="700" fill="#5eead4" text-anchor="middle">:8900</text>
+        <rect x="270" y="16" width="65" height="18" rx="4" fill="#0f172a"/>
+        <text x="302" y="29" font-size="10" font-weight="600" fill="#2dd4bf" text-anchor="middle">/fb/*</text>
+        <text x="14" y="62" font-size="11" font-weight="500" fill="#cbd5e1">Image: ghcr.io/gtsteffaniak/filebrowser</text>
+        <text x="14" y="80" font-size="11" font-weight="400" fill="#94a3b8">Multi-source web storage manager</text>
+        <text x="14" y="98" font-size="10" font-weight="400" fill="#64748b">Scoped user home dirs &amp; shared access</text>
+      </g>
+    </g>
+
+    <!-- Row 2: JupyterLab / SciPy + Marimo -->
+    <g transform="translate(30, 385)">
+      <!-- JupyterLab & SciPy -->
+      <g transform="translate(0, 0)">
+        <rect width="345" height="105" rx="10" fill="url(#cardGrad)" stroke="#f59e0b" stroke-width="1.2"/>
+        <rect x="14" y="14" width="32" height="32" rx="6" fill="#b45309"/>
+        <text x="30" y="36" font-size="14" font-weight="800" fill="#fde68a" text-anchor="middle">JP</text>
+        <text x="56" y="28" font-size="14" font-weight="700" fill="#f8fafc">JupyterLab &amp; SciPy</text>
+        <rect x="200" y="16" width="130" height="18" rx="4" fill="#78350f" fill-opacity="0.4"/>
+        <text x="265" y="29" font-size="10" font-weight="700" fill="#fde68a" text-anchor="middle">:8888 &amp; :8889</text>
+        <text x="14" y="60" font-size="11" font-weight="500" fill="#cbd5e1">jupyter/base &amp; quay.io/jupyter/scipy</text>
+        <text x="14" y="78" font-size="11" font-weight="400" fill="#94a3b8">Interactive scientific data science notebooks</text>
+        <text x="14" y="94" font-size="10" font-weight="400" fill="#64748b">Routes: /jupyter/* and /scipy/*</text>
+      </g>
+
+      <!-- Marimo Reactive Notebook -->
+      <g transform="translate(375, 0)">
+        <rect width="345" height="105" rx="10" fill="url(#cardGrad)" stroke="#8b5cf6" stroke-width="1.2"/>
+        <rect x="14" y="14" width="32" height="32" rx="6" fill="#6d28d9"/>
+        <text x="30" y="36" font-size="14" font-weight="800" fill="#ddd6fe" text-anchor="middle">MO</text>
+        <text x="56" y="28" font-size="14" font-weight="700" fill="#f8fafc">Marimo Notebook</text>
+        <rect x="210" y="16" width="120" height="18" rx="4" fill="#581c87" fill-opacity="0.4"/>
+        <text x="270" y="29" font-size="10" font-weight="700" fill="#e9d5ff" text-anchor="middle">Reactive Python</text>
+        <text x="14" y="60" font-size="11" font-weight="500" fill="#cbd5e1">Image: ghcr.io/marimo-team/marimo</text>
+        <text x="14" y="78" font-size="11" font-weight="400" fill="#94a3b8">Next-gen reproducible reactive notebook</text>
+        <text x="14" y="94" font-size="10" font-weight="400" fill="#64748b">Interactive pure Python web applications</text>
+      </g>
+    </g>
+
+    <!-- Storage Layer: Shared Bind Mounts (Anchor across bottom of VM) -->
+    <g transform="translate(30, 510)">
+      <rect width="720" height="66" rx="8" fill="url(#storageGrad)" stroke="#14b8a6" stroke-width="1.2"/>
+      <rect x="2" y="2" width="716" height="62" rx="6" fill="#042f2e" fill-opacity="0.88"/>
+      
+      <!-- Folders Icon -->
+      <rect x="16" y="14" width="36" height="36" rx="6" fill="#0f766e"/>
+      <text x="34" y="38" font-size="16" font-weight="700" fill="#ffffff" text-anchor="middle">🗄️</text>
+      
+      <text x="64" y="30" font-size="13" font-weight="700" fill="#5eead4">SHARED HOST BIND MOUNTS</text>
+      <text x="260" y="30" font-size="12" font-weight="500" fill="#99f6e4">./files ↔ ./data ↔ /srv/workspaces</text>
+      <text x="64" y="48" font-size="11" font-weight="400" fill="#94a3b8">Files uploaded or created in Filebrowser Quantum are instantaneously accessible in VS Code &amp; JupyterLab</text>
+    </g>
+
+    <!-- Dashed Bidirectional Flow between Containers and Storage -->
+    <path d="M 120 492 L 120 510" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <path x="210" d="M 210 492 L 210 510" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <path d="M 520 492 L 520 510" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="3,3"/>
+    <path d="M 680 370 L 680 510" stroke="#14b8a6" stroke-width="1.5" stroke-dasharray="3,3"/>
+  </g>
+
+  <!-- Thin Connecting Branch from Proxmox down to Home Assistant -->
+  <!-- Curves around the right side subtly -->
+  <path d="M 680 145 C 835 145, 835 880, 500 905" stroke="#334155" stroke-width="1.5" stroke-dasharray="4,4" fill="none" marker-end="url(#arrow)"/>
+  <rect x="750" y="460" width="80" height="20" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <text x="790" y="474" font-size="9" font-weight="600" fill="#64748b" text-anchor="middle">Virtual Bridge</text>
+
+  <!-- ========================================== -->
+  <!-- 3. SMART HOME & AUTOMATION (LEAST PRIORITY) -->
+  <!-- ========================================== -->
+  <g transform="translate(40, 905)">
+    <!-- Low-profile compact container -->
+    <rect width="780" height="175" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1.2"/>
+
+    <!-- Section Header (Subdued) -->
+    <rect x="0" y="0" width="780" height="32" rx="12" fill="#1e293b" fill-opacity="0.4"/>
+    <circle cx="20" cy="16" r="4" fill="#94a3b8"/>
+    <text x="32" y="20" font-size="12" font-weight="700" fill="#cbd5e1">Home Assistant &amp; Smart Home Ecosystem</text>
+    <text x="300" y="20" font-size="11" font-weight="500" fill="#64748b">(haos • 100.126.185.111) — IoT &amp; Sensors</text>
+
+    <!-- Mini-flow: HA Core -> Tapo | ESP32-C6 OTBR -> GL.iNet Sensor -->
+    <g transform="translate(20, 44)">
+      <!-- HA Core Appliance (Small) -->
+      <g transform="translate(0, 0)">
+        <rect width="180" height="95" rx="8" fill="#1e293b" stroke="#0284c7" stroke-width="1"/>
+        <text x="14" y="24" font-size="12" font-weight="700" fill="#38bdf8">Home Assistant</text>
+        <rect x="110" y="12" width="55" height="16" rx="3" fill="#0369a1" fill-opacity="0.3"/>
+        <text x="137" y="24" font-size="9" font-weight="700" fill="#7dd3fc" text-anchor="middle">HAOS</text>
+        <text x="14" y="46" font-size="10" font-weight="400" fill="#94a3b8">Linux 6.18.52-haos</text>
+        <text x="14" y="64" font-size="10" font-weight="400" fill="#94a3b8">Integrations &amp; Add-ons</text>
+        <text x="14" y="80" font-size="10" font-weight="600" fill="#38bdf8">Matter &amp; Thread Hub</text>
+      </g>
+
+      <!-- Connectors from HA Core -->
+      <path d="M 180 35 L 215 35" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <path d="M 180 70 L 375 70" stroke="#c084fc" stroke-width="1.2" marker-end="url(#arrow-purple)"/>
+
+      <!-- Device 1: TP-Link Tapo -->
+      <g transform="translate(215, 10)">
+        <rect width="140" height="50" rx="6" fill="#1e293b" stroke="#14b8a6" stroke-width="1"/>
+        <text x="10" y="20" font-size="11" font-weight="700" fill="#2dd4bf">TP-Link Tapo</text>
+        <text x="10" y="38" font-size="9.5" font-weight="400" fill="#94a3b8">Smart Plugs &amp; Bulbs (Wi-Fi)</text>
+      </g>
+
+      <!-- Device 2: ESP32-C6 OTBR (OpenThread Border Router) -->
+      <g transform="translate(380, 10)">
+        <rect width="170" height="95" rx="8" fill="#1e293b" stroke="#a855f7" stroke-width="1.2"/>
+        <text x="12" y="22" font-size="12" font-weight="700" fill="#c084fc">ESP32-C6 Dev Board</text>
+        <rect x="12" y="32" width="145" height="18" rx="3" fill="#6b21a8" fill-opacity="0.4"/>
+        <text x="84" y="45" font-size="9" font-weight="700" fill="#e9d5ff" text-anchor="middle">OpenThread Border Router</text>
+        <text x="12" y="68" font-size="10" font-weight="400" fill="#94a3b8">Flashed with ESP-IDF OTBR</text>
+        <text x="12" y="84" font-size="9.5" font-weight="500" fill="#cbd5e1">Wi-Fi 6 ↔ 802.15.4 Mesh</text>
+      </g>
+
+      <!-- Arrow from OTBR to Lafaer Sensor -->
+      <line x1="550" y1="58" x2="585" y2="58" stroke="#a855f7" stroke-width="1.5" marker-end="url(#arrow-purple)"/>
+
+      <!-- Device 3: GL.iNet Lafaer Presence Sensor -->
+      <g transform="translate(590, 10)">
+        <rect width="165" height="95" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.2"/>
+        <text x="12" y="22" font-size="12" font-weight="700" fill="#34d399">GL.iNet Lafaer</text>
+        <rect x="12" y="32" width="140" height="18" rx="3" fill="#065f46" fill-opacity="0.4"/>
+        <text x="82" y="45" font-size="9" font-weight="700" fill="#a7f3d0" text-anchor="middle">Presence Sensor</text>
+        <text x="12" y="68" font-size="10" font-weight="400" fill="#94a3b8">mmWave Radar Sensing</text>
+        <text x="12" y="84" font-size="9.5" font-weight="600" fill="#6ee7b7">Thread / Matter Network</text>
+      </g>
+    </g>
+  </g>
+</svg>
