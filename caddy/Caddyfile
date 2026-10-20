@@ -1,0 +1,39 @@
+:8081 {
+    # 1. Redirect /app or /app/ to reverse proxyy
+    redir /code /code/ 308
+
+    # 2. Match /app/ and anything under it, stripping "/app" before proxying
+    handle_path /code/* {
+        reverse_proxy 127.0.0.1:8080
+    }
+
+    # jupyter notebook
+    redir /jupyter /jupyter/ 308
+
+    handle /jupyter/* {
+        reverse_proxy 127.0.0.1:8888
+    }
+
+    # scipy notebook
+    redir /scipy /scipy/ 308
+
+    handle /scipy/* {
+        reverse_proxy 127.0.0.1:8889
+    }
+
+    # filebrowser
+    redir /fb /fb/ 308
+
+    handle /fb/* {
+        reverse_proxy 127.0.0.1:8900 {
+            header_up Host {host}
+            header_up X-Forwarded-For {remote_host}
+            header_up X-Forwarded-Proto https
+        }
+    }
+
+    # 3. All other traffic to Dockhand GUI
+    handle {
+        reverse_proxy 127.0.0.1:3000
+    }
+}
